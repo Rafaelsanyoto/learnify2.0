@@ -108,9 +108,8 @@
                                 </button>
                             </form>
                         </div>
-                        @endadmin
                     </div>
-
+                    @endadmin
                 </div>
             </div>
 
