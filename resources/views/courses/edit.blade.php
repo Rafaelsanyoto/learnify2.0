@@ -29,7 +29,7 @@
     @endif
 
     <form id="courseForm"
-          action="{{ route('admin.courses.update', $course->id) }}"
+          action="{{ route('courses.update', $course->id) }}"
           method="POST"
           enctype="multipart/form-data">
         @csrf
@@ -194,7 +194,7 @@
 
                 {{-- Delete --}}
                 <form method="POST"
-                      action="{{ route('admin.courses.destroy', $course->id) }}"
+                      action="{{ route('courses.destroy', $course->id) }}"
                       class="mt-3">
                     @csrf
                     @method('DELETE')
