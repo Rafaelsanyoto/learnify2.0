@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container py-5">
-    <h1 class="mb-4 text-center">My Courses</h1>
+    <h1 class="mb-4 text-center">{{ __('messages.my_course') }}</h1>
 
     @if(session('success'))
         <div class="alert alert-success text-center">{{ session('success') }}</div>
@@ -29,12 +29,12 @@
                         <h5 class="card-title">{{ $course->title }}</h5>
                         <p class="card-text mb-1">
                             <small class="text-muted">
-                                Enrolled: {{ $course->pivot->created_at?->format('d M Y') ?? 'N/A' }}
+                                {{ __('messages.enrolled_at') }} {{ $course->pivot->created_at?->format('d M Y') ?? 'N/A' }}
                             </small>
                         </p>
                         <p class="card-text">
                             <small class="text-muted">
-                                Updated: {{ $course->updated_at?->diffForHumans() ?? 'N/A' }}
+                                {{ __('messages.last_updated') }} {{ $course->updated_at?->diffForHumans() ?? 'N/A' }}
                             </small>
                         </p>
                     </div>
