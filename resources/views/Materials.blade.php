@@ -4,29 +4,41 @@
 
 <div class="container py-5">
     <div class="row justify-content-center">
-        @if(session('success'))
-            <div class="alert alert-success text-center">{{ session('success') }}</div>
-        @endif
 
-        @if(session('error'))
-            <div class="alert alert-danger text-center">{{ session('error') }}</div>
-        @endif
         <div class="col-lg-8">
-            <div class="text-center mb-4">
+
+            {{-- TITLE --}}
+            <div class="text-center mb-3">
                 <h1 class="fw-bold">{{ $course->title }}</h1>
             </div>
 
+            {{-- ⭐ STAR RATING --}}
+            <div class="text-center mb-4">
+                <div id="stars">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <span class="star"
+                              data-value="{{ $i }}"
+                              style="font-size:28px; cursor:pointer; color:#d1d5db;">
+                            ★
+                        </span>
+                    @endfor
+                </div>
 
-             <div class="text-center mb-4">
-                <div class="ratio ratio-16x9">
-                    <iframe
-                        src="{{ $course->links }}"
-                        title="YouTube video"
-                        allowfullscreen>
-                    </iframe>
+                <input type="hidden" id="ratingValue" value="0">
+
+                <div class="text-muted mt-1">
+                    Rating: <span id="ratingText">0</span>/5
                 </div>
             </div>
 
+            {{-- VIDEO --}}
+            <div class="text-center mb-4">
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{ $course->links }}" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            {{-- FORM --}}
             <form action="{{ route('course.submit', $course->id) }}" method="POST">
                 @csrf
 
@@ -99,5 +111,26 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const stars = document.querySelectorAll('.star');
+    const ratingInput = document.getElementById('ratingValue');
+    const ratingText = document.getElementById('ratingText');
+
+    stars.forEach(star => {
+        star.addEventListener('click', function () {
+            const value = this.dataset.value;
+            ratingInput.value = value;
+            ratingText.innerText = value;
+
+            stars.forEach(s => {
+                s.style.color =
+                    s.dataset.value <= value ? '#facc15' : '#d1d5db';
+            });
+        });
+    });
+});
+</script>
 
 @endsection
