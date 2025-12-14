@@ -36,7 +36,7 @@ class CourseController extends Controller
 
         $courses = $query->get();
 
-        return view('courses.index', compact('courses', 'search'));
+        return view('coursecatalog', compact('courses', 'search'));
     }
 
 
