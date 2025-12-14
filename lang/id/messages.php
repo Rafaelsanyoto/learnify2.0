@@ -28,4 +28,9 @@ return [
     'already_enrolled'   => 'Anda sudah terdaftar di kursus ini.',
     'successfully_applied' => 'Anda berhasil mendaftar untuk kursus ini.',
     'course_submitted'   => 'Kursus berhasil diserahkan!',
+    'enrolled_at'        => 'Terdaftar:',
+    'last_updated'       => 'Diperbarui:',
+    'question'           => 'Pertanyaan',
+    'option'             => 'Opsi',
+    'submit_btn'         => 'Kirim',
 ];
