@@ -47,12 +47,7 @@
                 <div class="stat-container">
                     <div class="stat-box">
                         <p class="mb-0 text-sm text-muted">Total Courses Enrolled</p>
-                    </div>
-                    <div class="stat-box">
-                        <p class="mb-0 text-sm text-muted">Courses Completed</p>
-                    </div>
-                    <div class="stat-box">
-                        <p class="mb-0 text-sm text-muted">Average Progress</p>
+                        <h4 class="mb-0">{{ $courses?->count() ?? 0 }}</h4>
                     </div>
                 </div>
 
