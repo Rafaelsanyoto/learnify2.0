@@ -36,7 +36,7 @@ class CourseController extends Controller
 
         $courses = $query->get();
 
-        return view('coursecatalog', compact('courses', 'search'));
+        return view('courses.index', compact('courses', 'search'));
     }
 
 
@@ -58,7 +58,7 @@ class CourseController extends Controller
 
         Course::create($attributes);
 
-        return redirect('/courses')->with('success', 'Course created successfully!');
+        return redirect('/courses')->with('success', __('messages.course_created'));
     }
 
 
@@ -79,38 +79,37 @@ class CourseController extends Controller
 
         $course->update($attributes);
 
-        return redirect('/courses')->with('success', 'Course updated successfully!');
+        return redirect('/courses')->with('success', __('messages.course_updated'));
     }
 
     public function destroy(Course $course)
     {
         $course->delete();
 
-        return redirect('/courses')->with('success', 'Course deleted successfully!');
+        return redirect('/courses')->with('success', __('messages.course_deleted'));
     }
+
     public function apply(Course $course)
     {
         $user = Auth::user();
 
-         if (!$user) {
-            return redirect('/login')->with('error', 'You must be logged in to apply for a course.');
+        if (!$user) {
+            return redirect('/login')->with('error', __('messages.login_to_apply'));
         }
+
         //check udah apply atau belum
         if ($user->courses()->where('course_id', $course->id)->exists()) {
-            return back()->with('error', 'You are already enrolled in this course.');
+            return back()->with('error', __('messages.already_enrolled'));
         }
 
         // gabungin course dengan user
         $user->courses()->attach($course->id);
 
-        return back()->with('success', 'You have successfully applied for this course.');
+        return back()->with('success', __('messages.successfully_applied'));
     }
 
     public function submit(Request $request, $id)
-{
-
-    return redirect('/')->with('success', 'Course submitted successfully!');
-}
-
-
+    {
+        return redirect()->route('home')->with('success', __('messages.course_submitted'));
+    }
 }
