@@ -6,9 +6,15 @@
 
         <!-- Menu kiri -->
         <div class="d-none d-lg-flex align-items-center gap-4">
-            <a href="{{ route('home') }}" class="nav-link fw-semibold">Home</a>
-            <a href="/courses" class="nav-link fw-semibold">Course Catalogue</a>
-            <a href="/mycourse" class="nav-link fw-semibold">My Course</a>
+            <a href="{{ route('home') }}" class="nav-link fw-semibold">
+                {{ __('messages.home') }}
+            </a>
+            <a href="/courses" class="nav-link fw-semibold">
+                {{ __('messages.course_catalogue') }}
+            </a>
+            <a href="/mycourse" class="nav-link fw-semibold">
+                {{ __('messages.my_course') }}
+            </a>
         </div>
 
         <div class="d-flex align-items-center" style="gap: 12px; margin-left: auto;">
@@ -26,26 +32,18 @@
                 </a>
             </div>
 
-            <form action="{{ route('courses.index') }}" method="GET" id="filterForm" class="d-flex align-items-center">
-                @if(request('search'))
-                    <input type="hidden" name="search" value="{{ request('search') }}">
-                @endif
-
-                <select name="sort" class="form-select rounded-pill px-3" style="width: 150px;" onchange="document.getElementById('filterForm').submit()">
-                    <option value="">Filter</option>
-                    <option value="price_asc" {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
-                    <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Price: High to Low</option>
-                </select>
-            </form>
 
             <form action="{{ route('courses.index')}}" method="GET" class="d-flex align-items-center gap-2">
-                <input name="search" type="text" class="form-control rounded-pill px-3" placeholder="Search..." style="width: 250px;">
-                <button class="btn btn-outline-primary rounded-pill px-4 fw-bold">Search</button>
+                <input name="search" type="text" class="form-control rounded-pill px-3"
+                       placeholder="{{ __('messages.search_placeholder') }}" style="width: 250px;">
+                <button class="btn btn-outline-primary rounded-pill px-4 fw-bold">
+                    {{ __('messages.search') }}
+                </button>
             </form>
 
             @guest
                 <a href="/login" class="btn btn-outline-primary rounded-pill px-4 fw-bold">
-                    Login
+                    {{ __('messages.login') }}
                 </a>
             @endguest
 
