@@ -55,11 +55,6 @@
                     My Courses
                     <span class="list-group-icon">></span>
                 </a>
-
-                <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
-                    My Certificates
-                    <span class="list-group-icon">></span>
-                </a>
             </div>
         </div>
 
