@@ -31,6 +31,5 @@ return [
     'enrolled_at'        => 'Enrolled:',
     'last_updated'       => 'Updated:',
     'question'           => 'Question',
-    'option'             => 'Option',
     'submit_btn'         => 'Submit',
 ];
